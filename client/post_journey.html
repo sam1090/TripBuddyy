@@ -1,0 +1,154 @@
+<section id="main-content">
+    <section class="wrapper">
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <div class="form-horizontal style-form" method="get">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                <strong>
+                                    Starting Destination
+                                </strong>
+                            </label>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    Enter start Location :
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" ng-keyup="fetchStart()" ng-model="startAddressModel" ng-model-options="{ debounce: 50 }"/>
+                                </div>
+                                <div class="col-sm-4" ng-if="startCoordLat">
+                                    {{startLocation}} {{startArea}} {{startCity}} ({{startCoordLat}}, {{startCoordLng}})
+                                </div>
+                            </div>
+                            <div class="col-sm-10 col-sm-offset-1">
+
+                            </div>
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <ui-gmap-google-map center='startMap.center' zoom='startMap.zoom'>
+                                    <ui-gmap-marker coords="startMarker.coords" options="startMarker.options" events="startMarker.events" idkey="startMarker.id">
+                                    </ui-gmap-marker>
+                                </ui-gmap-google-map>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                <strong>
+                                    Ending Destination
+                                </strong>
+                            </label>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    Enter end Location :
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" ng-keyup="fetchend()" ng-model="endAddressModel" ng-model-options="{ debounce: 50 }"/>
+                                </div>
+                                <div class="col-sm-4" ng-if="endCoordLat">
+                                    {{endLocation}} {{endArea}} {{endCity}} ({{endCoordLat}}, {{endCoordLng}})
+                                </div>
+                            </div>
+                            <div class="col-sm-10 col-sm-offset-1">
+
+                            </div>
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <ui-gmap-google-map center='endMap.center' zoom='endMap.zoom'>
+                                    <ui-gmap-marker coords="endMarker.coords" options="endMarker.options" events="endMarker.events" idkey="endMarker.id">
+                                    </ui-gmap-marker>
+                                </ui-gmap-google-map>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                <strong>
+                                    Description
+                                </strong>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                Departure
+                            </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" ng-model="journeyObject.departure" type="datetime-local" min="">
+                                </input>
+                            </div>
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                Vehicle
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" ng-model="journeyObject.vehicle">
+                                <option ng-repeat="vehicle in vehicles" value="{{vehicle._id}}">{{vehicle.type}}</option>>
+                                </select>
+                                </input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                Available Seats
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" ng-model="journeyObject.availableSeats">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                </select>
+                                </input>
+                            </div>
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                Gender Preference
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" ng-model="journeyObject.genderPreference">
+                                <option value="None">None</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                </select>
+                                </input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                Description
+                            </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" ng-model="journeyObject.description" type="text">
+                                </input>
+                            </div>
+                            <label class="col-sm-2 col-sm-2 control-label">
+                                Fare
+                            </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" ng-model="journeyObject.fare" type="text">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <input class="form-control btn btn-facebook" ng-click="postJourney()" placeholder="" type="submit">
+                                </input>
+                            </div>
+                            <div class="col-sm-10 col-sm-offset-2 text-danger">
+                            <h5 ng-bind="postError"> </h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<!-- col-lg-12-->
+<!-- --/wrapper ---->
+<!-- /MAIN CONTENT -->
